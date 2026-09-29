@@ -1,928 +1,1147 @@
 <!DOCTYPE html>
-
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-```
-<meta name="description"
-      content="AutoCorp Intelligence - Plataforma corporativa de automação, dados, documentos e inteligência empresarial">
+    <title>AutoCorp Intelligence</title>
 
-<title>AutoCorp Intelligence</title>
+    <meta
+        name="description"
+        content="AutoCorp Intelligence — Plataforma corporativa de automação, dados, documentos e inteligência."
+    >
 
-<link rel="stylesheet" href="style.css">
-```
-
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-```
-<!-- ================================
-     SIDEBAR
-================================= -->
+    <!-- =====================================================
+         SIDEBAR
+    ====================================================== -->
 
-<aside class="sidebar" id="sidebar">
+    <aside class="sidebar" id="sidebar">
 
-    <div class="logo">
-        <div class="logo-icon">A</div>
+        <div class="sidebar-header">
 
-        <div class="logo-text">
-            <strong>AutoCorp</strong>
-            <span>Intelligence</span>
+            <a href="#" class="logo">
+                <span class="logo-icon">A</span>
+
+                <span class="logo-text">
+                    AutoCorp
+                    <strong>Intelligence</strong>
+                </span>
+            </a>
+
         </div>
-    </div>
 
 
-    <nav class="menu">
+        <nav class="sidebar-nav">
 
-        <p class="menu-title">PRINCIPAL</p>
+            <!-- PRINCIPAL -->
+            <div class="nav-section">
 
-        <a href="#dashboard" class="menu-item active">
-            <span class="icon">▦</span>
-            <span>Dashboard</span>
-        </a>
+                <span class="nav-title">PRINCIPAL</span>
 
-        <a href="#documentos" class="menu-item">
-            <span class="icon">▤</span>
-            <span>Documentos</span>
-        </a>
+                <a href="#dashboard" class="nav-link active">
+                    <span class="nav-icon">▦</span>
+                    <span>Dashboard</span>
+                </a>
 
-        <a href="#notas" class="menu-item">
-            <span class="icon">▣</span>
-            <span>Notas Fiscais</span>
-        </a>
+                <a href="#documentos" class="nav-link">
+                    <span class="nav-icon">▤</span>
+                    <span>Documentos</span>
+                </a>
 
-        <p class="menu-title">GESTÃO</p>
+                <a href="#notas-fiscais" class="nav-link">
+                    <span class="nav-icon">▣</span>
+                    <span>Notas Fiscais</span>
+                </a>
 
-        <a href="#rh" class="menu-item">
-            <span class="icon">♙</span>
-            <span>Recursos Humanos</span>
-        </a>
-
-        <a href="#relatorios" class="menu-item">
-            <span class="icon">▥</span>
-            <span>Relatórios</span>
-        </a>
-
-        <a href="#etl" class="menu-item">
-            <span class="icon">↻</span>
-            <span>Processos ETL</span>
-        </a>
-
-        <p class="menu-title">INTELIGÊNCIA</p>
-
-        <a href="#chatbot" class="menu-item">
-            <span class="icon">✦</span>
-            <span>Assistente IA</span>
-        </a>
-
-        <a href="#automacoes" class="menu-item">
-            <span class="icon">⚙</span>
-            <span>Automações</span>
-        </a>
-
-    </nav>
+            </div>
 
 
-    <div class="sidebar-bottom">
+            <!-- GESTÃO -->
+            <div class="nav-section">
 
-        <a href="#configuracoes" class="menu-item">
-            <span class="icon">⚙</span>
-            <span>Configurações</span>
-        </a>
+                <span class="nav-title">GESTÃO</span>
+
+                <a href="#rh" class="nav-link">
+                    <span class="nav-icon">♙</span>
+                    <span>Recursos Humanos</span>
+                </a>
+
+                <a href="#relatorios" class="nav-link">
+                    <span class="nav-icon">▥</span>
+                    <span>Relatórios</span>
+                </a>
+
+                <a href="#etl" class="nav-link">
+                    <span class="nav-icon">↻</span>
+                    <span>Processos ETL</span>
+                </a>
+
+            </div>
+
+
+            <!-- INTELIGÊNCIA -->
+            <div class="nav-section">
+
+                <span class="nav-title">INTELIGÊNCIA</span>
+
+                <a href="#assistente" class="nav-link">
+                    <span class="nav-icon">✦</span>
+                    <span>Assistente IA</span>
+                </a>
+
+                <a href="#automacoes" class="nav-link">
+                    <span class="nav-icon">⚙</span>
+                    <span>Automações</span>
+                </a>
+
+                <a href="#configuracoes" class="nav-link">
+                    <span class="nav-icon">⚙</span>
+                    <span>Configurações</span>
+                </a>
+
+            </div>
+
+        </nav>
+
+
+        <!-- STATUS DO SISTEMA -->
 
         <div class="system-status">
 
-            <span class="status-dot"></span>
+            <span class="status-indicator"></span>
 
             <div>
                 <strong>Sistema operacional</strong>
-                <small>Todos os serviços ativos</small>
+                <span>Todos os serviços ativos</span>
             </div>
 
         </div>
 
-    </div>
-
-</aside>
+    </aside>
 
 
-<!-- ================================
-     MAIN
-================================= -->
+    <!-- =====================================================
+         CONTEÚDO PRINCIPAL
+    ====================================================== -->
 
-<main class="main-content">
+    <main class="main-content" id="dashboard">
 
-    <!-- HEADER -->
+        <!-- =================================================
+             TOPBAR
+        ================================================== -->
 
-    <header class="topbar">
+        <header class="topbar">
 
-        <button class="mobile-menu" id="mobileMenu">
-            ☰
-        </button>
+            <div class="topbar-left">
 
-        <div class="page-title">
+                <button
+                    class="mobile-menu"
+                    id="mobileMenu"
+                    type="button"
+                    aria-label="Abrir menu"
+                >
+                    ☰
+                </button>
 
-            <span>VISÃO GERAL</span>
+                <div class="page-heading">
 
-            <h1>Dashboard</h1>
+                    <span class="page-label">VISÃO GERAL</span>
 
-        </div>
-
-
-        <div class="topbar-actions">
-
-            <button class="notification" aria-label="Notificações">
-                🔔
-                <span class="notification-badge">3</span>
-            </button>
-
-
-            <div class="user-profile">
-
-                <div class="user-avatar">
-                    MK
-                </div>
-
-                <div class="user-info">
-
-                    <strong>Administrador</strong>
-
-                    <span>Administrador</span>
+                    <h1>Dashboard</h1>
 
                 </div>
-
-                <span class="arrow">⌄</span>
-
-            </div>
-
-        </div>
-
-    </header>
-
-
-    <!-- ================================
-         DASHBOARD
-    ================================= -->
-
-    <section class="dashboard" id="dashboard">
-
-
-        <!-- WELCOME -->
-
-        <div class="welcome">
-
-            <div>
-
-                <p class="welcome-label">
-                    PAINEL CORPORATIVO
-                </p>
-
-                <h2>
-                    Bom dia, Administrador! 👋
-                </h2>
-
-                <p>
-                    Acompanhe os principais indicadores e processos
-                    automatizados da empresa.
-                </p>
 
             </div>
 
 
-            <button class="primary-button">
-                + Nova automação
-            </button>
+            <div class="topbar-right">
 
-        </div>
+                <!-- NOTIFICAÇÕES -->
 
+                <button
+                    class="notification-btn"
+                    id="notificationBtn"
+                    type="button"
+                    aria-label="Notificações"
+                >
+                    🔔
 
-        <!-- ==========================
-             INDICADORES
-        =========================== -->
-
-        <div class="metrics-grid">
-
-
-            <article class="metric-card">
-
-                <div class="metric-header">
-
-                    <span class="metric-icon blue">
-                        R$
+                    <span class="notification-count">
+                        3
                     </span>
-
-                    <span class="metric-change positive">
-                        +12,8%
-                    </span>
-
-                </div>
-
-                <p>Faturamento</p>
-
-                <h3>R$ 85.430,00</h3>
-
-                <span class="metric-description">
-                    Comparado ao mês anterior
-                </span>
-
-            </article>
+                </button>
 
 
-            <article class="metric-card">
+                <!-- PERFIL -->
 
-                <div class="metric-header">
+                <div class="user-profile">
 
-                    <span class="metric-icon purple">
-                        ▣
-                    </span>
+                    <div class="user-avatar">
+                        MK
+                    </div>
 
-                    <span class="metric-change positive">
-                        +18
-                    </span>
+                    <div class="user-info">
 
-                </div>
+                        <strong>Administrador</strong>
 
-                <p>Notas fiscais</p>
-
-                <h3>147</h3>
-
-                <span class="metric-description">
-                    Documentos processados
-                </span>
-
-            </article>
-
-
-            <article class="metric-card">
-
-                <div class="metric-header">
-
-                    <span class="metric-icon orange">
-                        ♙
-                    </span>
-
-                    <span class="metric-change">
-                        Ativos
-                    </span>
-
-                </div>
-
-                <p>Funcionários</p>
-
-                <h3>42</h3>
-
-                <span class="metric-description">
-                    Colaboradores cadastrados
-                </span>
-
-            </article>
-
-
-            <article class="metric-card">
-
-                <div class="metric-header">
-
-                    <span class="metric-icon green">
-                        ✓
-                    </span>
-
-                    <span class="metric-change positive">
-                        98,7%
-                    </span>
-
-                </div>
-
-                <p>Processos concluídos</p>
-
-                <h3>238</h3>
-
-                <span class="metric-description">
-                    Taxa de sucesso
-                </span>
-
-            </article>
-
-        </div>
-
-
-        <!-- ==========================
-             GRÁFICOS
-        =========================== -->
-
-        <div class="dashboard-grid">
-
-
-            <section class="panel chart-panel">
-
-                <div class="panel-header">
-
-                    <div>
-
-                        <span class="panel-label">
-                            ANÁLISE FINANCEIRA
-                        </span>
-
-                        <h3>Faturamento mensal</h3>
+                        <span>Administrador</span>
 
                     </div>
 
-                    <select>
-                        <option>Últimos 6 meses</option>
-                        <option>Este ano</option>
-                        <option>Últimos 12 meses</option>
-                    </select>
+                    <span class="user-arrow">
+                        ⌄
+                    </span>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- =================================================
+             CONTEÚDO
+        ================================================== -->
+
+        <div class="dashboard-container">
+
+
+            <!-- =================================================
+                 BOAS-VINDAS
+            ================================================== -->
+
+            <section class="welcome-section">
+
+                <div class="welcome-content">
+
+                    <span class="section-label">
+                        PAINEL CORPORATIVO
+                    </span>
+
+                    <h2>
+                        Bom dia, Administrador! 👋
+                    </h2>
+
+                    <p>
+                        Acompanhe os principais indicadores e
+                        processos automatizados da empresa.
+                    </p>
 
                 </div>
 
 
-                <div class="chart">
-
-                    <div class="chart-y-axis">
-
-                        <span>100k</span>
-                        <span>80k</span>
-                        <span>60k</span>
-                        <span>40k</span>
-                        <span>20k</span>
-                        <span>0</span>
-
-                    </div>
-
-
-                    <div class="chart-area">
-
-                        <div class="chart-lines">
-
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                            <span></span>
-
-                        </div>
-
-
-                        <div class="chart-bars">
-
-                            <div class="bar" style="height:48%">
-                                <span>Jan</span>
-                            </div>
-
-                            <div class="bar" style="height:61%">
-                                <span>Fev</span>
-                            </div>
-
-                            <div class="bar" style="height:54%">
-                                <span>Mar</span>
-                            </div>
-
-                            <div class="bar" style="height:72%">
-                                <span>Abr</span>
-                            </div>
-
-                            <div class="bar" style="height:68%">
-                                <span>Mai</span>
-                            </div>
-
-                            <div class="bar active-bar" style="height:86%">
-                                <span>Jun</span>
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                </div>
+                <button
+                    class="primary-btn"
+                    id="newAutomationBtn"
+                    type="button"
+                >
+                    <span>+</span>
+                    Nova automação
+                </button>
 
             </section>
 
 
-            <!-- DISTRIBUIÇÃO -->
+            <!-- =================================================
+                 INDICADORES
+            ================================================== -->
 
-            <section class="panel distribution-panel">
+            <section class="metrics-grid">
 
-                <div class="panel-header">
 
-                    <div>
+                <!-- FATURAMENTO -->
 
-                        <span class="panel-label">
-                            PROCESSAMENTO
+                <article class="metric-card">
+
+                    <div class="metric-top">
+
+                        <div class="metric-icon">
+                            R$
+                        </div>
+
+                        <span class="metric-positive">
+                            +12,8%
                         </span>
-
-                        <h3>Documentos</h3>
 
                     </div>
 
-                    <button class="more-button">
-                        ⋮
-                    </button>
+                    <div class="metric-content">
 
-                </div>
+                        <span class="metric-label">
+                            Faturamento
+                        </span>
+
+                        <h3>
+                            R$ 85.430,00
+                        </h3>
+
+                        <span class="metric-description">
+                            Comparado ao mês anterior
+                        </span>
+
+                    </div>
+
+                </article>
 
 
-                <div class="donut-container">
+                <!-- NOTAS FISCAIS -->
 
-                    <div class="donut">
+                <article class="metric-card">
 
-                        <div class="donut-center">
+                    <div class="metric-top">
 
-                            <strong>238</strong>
+                        <div class="metric-icon">
+                            ▣
+                        </div>
 
-                            <span>Total</span>
+                        <span class="metric-positive">
+                            +18
+                        </span>
+
+                    </div>
+
+                    <div class="metric-content">
+
+                        <span class="metric-label">
+                            Notas fiscais
+                        </span>
+
+                        <h3>
+                            147
+                        </h3>
+
+                        <span class="metric-description">
+                            Documentos processados
+                        </span>
+
+                    </div>
+
+                </article>
+
+
+                <!-- FUNCIONÁRIOS -->
+
+                <article class="metric-card">
+
+                    <div class="metric-top">
+
+                        <div class="metric-icon">
+                            ♙
+                        </div>
+
+                        <span class="metric-positive">
+                            Ativos
+                        </span>
+
+                    </div>
+
+                    <div class="metric-content">
+
+                        <span class="metric-label">
+                            Funcionários
+                        </span>
+
+                        <h3>
+                            42
+                        </h3>
+
+                        <span class="metric-description">
+                            Colaboradores cadastrados
+                        </span>
+
+                    </div>
+
+                </article>
+
+
+                <!-- PROCESSOS -->
+
+                <article class="metric-card">
+
+                    <div class="metric-top">
+
+                        <div class="metric-icon">
+                            ✓
+                        </div>
+
+                        <span class="metric-positive">
+                            98,7%
+                        </span>
+
+                    </div>
+
+                    <div class="metric-content">
+
+                        <span class="metric-label">
+                            Processos concluídos
+                        </span>
+
+                        <h3>
+                            238
+                        </h3>
+
+                        <span class="metric-description">
+                            Taxa de sucesso
+                        </span>
+
+                    </div>
+
+                </article>
+
+            </section>
+
+
+            <!-- =================================================
+                 GRÁFICOS
+            ================================================== -->
+
+            <section class="dashboard-grid">
+
+
+                <!-- FATURAMENTO -->
+
+                <article class="panel chart-panel">
+
+                    <div class="panel-header">
+
+                        <div>
+
+                            <span class="section-label">
+                                ANÁLISE FINANCEIRA
+                            </span>
+
+                            <h3>
+                                Faturamento mensal
+                            </h3>
+
+                        </div>
+
+
+                        <select
+                            id="chartPeriod"
+                            class="chart-select"
+                            aria-label="Período do gráfico"
+                        >
+                            <option value="6">
+                                Últimos 6 meses
+                            </option>
+
+                            <option value="12">
+                                Últimos 12 meses
+                            </option>
+
+                            <option value="year">
+                                Este ano
+                            </option>
+                        </select>
+
+                    </div>
+
+
+                    <div class="chart-container">
+
+                        <div class="chart-y-axis">
+
+                            <span>100k</span>
+                            <span>80k</span>
+                            <span>60k</span>
+                            <span>40k</span>
+                            <span>20k</span>
+                            <span>0</span>
+
+                        </div>
+
+
+                        <div class="chart-area">
+
+                            <div class="chart-grid-lines">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+
+
+                            <div
+                                class="bar-chart"
+                                id="revenueChart"
+                            >
+
+                                <div class="bar-group">
+                                    <div
+                                        class="bar"
+                                        data-value="62000"
+                                        style="height: 62%;"
+                                    ></div>
+                                    <span>Jan</span>
+                                </div>
+
+                                <div class="bar-group">
+                                    <div
+                                        class="bar"
+                                        data-value="71000"
+                                        style="height: 71%;"
+                                    ></div>
+                                    <span>Fev</span>
+                                </div>
+
+                                <div class="bar-group">
+                                    <div
+                                        class="bar"
+                                        data-value="68000"
+                                        style="height: 68%;"
+                                    ></div>
+                                    <span>Mar</span>
+                                </div>
+
+                                <div class="bar-group">
+                                    <div
+                                        class="bar"
+                                        data-value="79000"
+                                        style="height: 79%;"
+                                    ></div>
+                                    <span>Abr</span>
+                                </div>
+
+                                <div class="bar-group">
+                                    <div
+                                        class="bar"
+                                        data-value="82400"
+                                        style="height: 82.4%;"
+                                    ></div>
+                                    <span>Mai</span>
+                                </div>
+
+                                <div class="bar-group">
+                                    <div
+                                        class="bar"
+                                        data-value="85430"
+                                        style="height: 85.43%;"
+                                    ></div>
+                                    <span>Jun</span>
+                                </div>
+
+                            </div>
 
                         </div>
 
                     </div>
 
-                </div>
+                </article>
 
 
-                <div class="legend">
+                <!-- DOCUMENTOS -->
 
-                    <div>
-                        <span class="legend-dot blue"></span>
-                        Notas fiscais
-                        <strong>62%</strong>
+                <article class="panel documents-panel">
+
+                    <div class="panel-header">
+
+                        <div>
+
+                            <span class="section-label">
+                                PROCESSAMENTO
+                            </span>
+
+                            <h3>
+                                Documentos
+                            </h3>
+
+                        </div>
+
+                        <button
+                            class="icon-btn"
+                            type="button"
+                            aria-label="Mais opções"
+                        >
+                            ⋮
+                        </button>
+
                     </div>
 
-                    <div>
-                        <span class="legend-dot purple"></span>
-                        Relatórios
-                        <strong>23%</strong>
+
+                    <div class="documents-chart">
+
+                        <div class="donut-chart">
+
+                            <div class="donut-center">
+
+                                <strong>238</strong>
+
+                                <span>Total</span>
+
+                            </div>
+
+                        </div>
+
                     </div>
 
-                    <div>
-                        <span class="legend-dot orange"></span>
-                        Documentos RH
-                        <strong>15%</strong>
+
+                    <div class="document-legend">
+
+                        <div class="legend-item">
+
+                            <span class="legend-color invoice"></span>
+
+                            <span>
+                                Notas fiscais
+                            </span>
+
+                            <strong>
+                                62%
+                            </strong>
+
+                        </div>
+
+
+                        <div class="legend-item">
+
+                            <span class="legend-color reports"></span>
+
+                            <span>
+                                Relatórios
+                            </span>
+
+                            <strong>
+                                23%
+                            </strong>
+
+                        </div>
+
+
+                        <div class="legend-item">
+
+                            <span class="legend-color hr"></span>
+
+                            <span>
+                                Documentos RH
+                            </span>
+
+                            <strong>
+                                15%
+                            </strong>
+
+                        </div>
+
                     </div>
 
-                </div>
+                </article>
 
             </section>
 
-        </div>
+
+            <!-- =================================================
+                 PROCESSOS + ATIVIDADES
+            ================================================== -->
+
+            <section class="content-grid">
 
 
-        <!-- ==========================
-             PROCESSOS + ATIVIDADES
-        =========================== -->
+                <!-- PROCESSOS RECENTES -->
 
-        <div class="bottom-grid">
+                <article class="panel processes-panel">
 
+                    <div class="panel-header">
 
-            <section class="panel processes-panel">
+                        <div>
 
-                <div class="panel-header">
+                            <span class="section-label">
+                                AUTOMAÇÕES
+                            </span>
 
-                    <div>
+                            <h3>
+                                Processos recentes
+                            </h3>
 
-                        <span class="panel-label">
-                            AUTOMAÇÕES
-                        </span>
+                        </div>
 
-                        <h3>Processos recentes</h3>
+                        <a href="#automacoes" class="panel-link">
+                            Ver todos →
+                        </a>
 
                     </div>
 
-                    <a href="#automacoes">
-                        Ver todos →
+
+                    <div class="process-list">
+
+
+                        <div class="process-item">
+
+                            <div class="process-icon success">
+                                ✓
+                            </div>
+
+                            <div class="process-info">
+
+                                <strong>
+                                    ETL financeiro
+                                </strong>
+
+                                <span>
+                                    Dados processados com sucesso
+                                </span>
+
+                            </div>
+
+                            <div class="process-meta">
+
+                                <span>
+                                    10:32
+                                </span>
+
+                                <strong class="status-success">
+                                    Concluído
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="process-item">
+
+                            <div class="process-icon success">
+                                ✓
+                            </div>
+
+                            <div class="process-info">
+
+                                <strong>
+                                    Importação de notas
+                                </strong>
+
+                                <span>
+                                    18 documentos processados
+                                </span>
+
+                            </div>
+
+                            <div class="process-meta">
+
+                                <span>
+                                    10:18
+                                </span>
+
+                                <strong class="status-success">
+                                    Concluído
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="process-item">
+
+                            <div class="process-icon processing">
+                                ↻
+                            </div>
+
+                            <div class="process-info">
+
+                                <strong>
+                                    Relatório mensal
+                                </strong>
+
+                                <span>
+                                    Gerando relatório financeiro
+                                </span>
+
+                            </div>
+
+                            <div class="process-meta">
+
+                                <span>
+                                    09:47
+                                </span>
+
+                                <strong class="status-processing">
+                                    Processando
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="process-item">
+
+                            <div class="process-icon success">
+                                ✓
+                            </div>
+
+                            <div class="process-info">
+
+                                <strong>
+                                    Sincronização RH
+                                </strong>
+
+                                <span>
+                                    Banco de funcionários atualizado
+                                </span>
+
+                            </div>
+
+                            <div class="process-meta">
+
+                                <span>
+                                    09:12
+                                </span>
+
+                                <strong class="status-success">
+                                    Concluído
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <!-- ATIVIDADES -->
+
+                <article class="panel activity-panel">
+
+                    <div class="panel-header">
+
+                        <div>
+
+                            <span class="section-label">
+                                AUDITORIA
+                            </span>
+
+                            <h3>
+                                Atividades recentes
+                            </h3>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="activity-list">
+
+
+                        <div class="activity-item">
+
+                            <div class="activity-avatar">
+                                MK
+                            </div>
+
+                            <div class="activity-info">
+
+                                <strong>
+                                    Administrador
+                                </strong>
+
+                                <p>
+                                    gerou um relatório financeiro
+                                </p>
+
+                                <span>
+                                    Há 8 minutos
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="activity-item">
+
+                            <div class="activity-avatar">
+                                RH
+                            </div>
+
+                            <div class="activity-info">
+
+                                <strong>
+                                    Sistema RH
+                                </strong>
+
+                                <p>
+                                    atualizou 6 funcionários
+                                </p>
+
+                                <span>
+                                    Há 21 minutos
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="activity-item">
+
+                            <div class="activity-avatar">
+                                ET
+                            </div>
+
+                            <div class="activity-info">
+
+                                <strong>
+                                    Processo ETL
+                                </strong>
+
+                                <p>
+                                    processou novos dados
+                                </p>
+
+                                <span>
+                                    Há 37 minutos
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+            </section>
+
+
+            <!-- =================================================
+                 MÓDULOS
+            ================================================== -->
+
+            <section class="modules-section">
+
+                <div class="section-heading">
+
+                    <div>
+
+                        <span class="section-label">
+                            PLATAFORMA
+                        </span>
+
+                        <h2>
+                            Módulos do sistema
+                        </h2>
+
+                        <p>
+                            Acesse rapidamente os principais recursos.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="modules-grid">
+
+
+                    <a
+                        href="#documentos"
+                        class="module-card"
+                    >
+
+                        <div class="module-icon">
+                            ▤
+                        </div>
+
+                        <div class="module-content">
+
+                            <h3>
+                                Documentos
+                            </h3>
+
+                            <p>
+                                Gerencie e organize documentos corporativos.
+                            </p>
+
+                            <span>
+                                Acessar →
+                            </span>
+
+                        </div>
+
+                    </a>
+
+
+                    <a
+                        href="#notas-fiscais"
+                        class="module-card"
+                    >
+
+                        <div class="module-icon">
+                            ▣
+                        </div>
+
+                        <div class="module-content">
+
+                            <h3>
+                                Notas Fiscais
+                            </h3>
+
+                            <p>
+                                Extraia e processe informações automaticamente.
+                            </p>
+
+                            <span>
+                                Acessar →
+                            </span>
+
+                        </div>
+
+                    </a>
+
+
+                    <a
+                        href="#rh"
+                        class="module-card"
+                    >
+
+                        <div class="module-icon">
+                            ♙
+                        </div>
+
+                        <div class="module-content">
+
+                            <h3>
+                                Recursos Humanos
+                            </h3>
+
+                            <p>
+                                Centralize funcionários e documentos de RH.
+                            </p>
+
+                            <span>
+                                Acessar →
+                            </span>
+
+                        </div>
+
+                    </a>
+
+
+                    <a
+                        href="#etl"
+                        class="module-card"
+                    >
+
+                        <div class="module-icon">
+                            ↻
+                        </div>
+
+                        <div class="module-content">
+
+                            <h3>
+                                ETL de Dados
+                            </h3>
+
+                            <p>
+                                Extraia, transforme e carregue informações.
+                            </p>
+
+                            <span>
+                                Acessar →
+                            </span>
+
+                        </div>
+
+                    </a>
+
+
+                    <a
+                        href="#relatorios"
+                        class="module-card"
+                    >
+
+                        <div class="module-icon">
+                            ▥
+                        </div>
+
+                        <div class="module-content">
+
+                            <h3>
+                                Relatórios
+                            </h3>
+
+                            <p>
+                                Crie relatórios empresariais automaticamente.
+                            </p>
+
+                            <span>
+                                Acessar →
+                            </span>
+
+                        </div>
+
+                    </a>
+
+
+                    <a
+                        href="#assistente"
+                        class="module-card"
+                    >
+
+                        <div class="module-icon">
+                            ✦
+                        </div>
+
+                        <div class="module-content">
+
+                            <h3>
+                                Assistente IA
+                            </h3>
+
+                            <p>
+                                Consulte documentos e dados usando inteligência artificial.
+                            </p>
+
+                            <span>
+                                Acessar →
+                            </span>
+
+                        </div>
+
                     </a>
 
                 </div>
 
-
-                <div class="process-list">
-
-
-                    <div class="process-item">
-
-                        <div class="process-icon success">
-                            ✓
-                        </div>
-
-                        <div class="process-info">
-
-                            <strong>
-                                ETL financeiro
-                            </strong>
-
-                            <span>
-                                Dados processados com sucesso
-                            </span>
-
-                        </div>
-
-                        <div class="process-time">
-                            10:32
-                        </div>
-
-                        <span class="status success">
-                            Concluído
-                        </span>
-
-                    </div>
-
-
-                    <div class="process-item">
-
-                        <div class="process-icon success">
-                            ✓
-                        </div>
-
-                        <div class="process-info">
-
-                            <strong>
-                                Importação de notas
-                            </strong>
-
-                            <span>
-                                18 documentos processados
-                            </span>
-
-                        </div>
-
-                        <div class="process-time">
-                            10:18
-                        </div>
-
-                        <span class="status success">
-                            Concluído
-                        </span>
-
-                    </div>
-
-
-                    <div class="process-item">
-
-                        <div class="process-icon loading">
-                            ↻
-                        </div>
-
-                        <div class="process-info">
-
-                            <strong>
-                                Relatório mensal
-                            </strong>
-
-                            <span>
-                                Gerando relatório financeiro
-                            </span>
-
-                        </div>
-
-                        <div class="process-time">
-                            09:47
-                        </div>
-
-                        <span class="status processing">
-                            Processando
-                        </span>
-
-                    </div>
-
-
-                    <div class="process-item">
-
-                        <div class="process-icon success">
-                            ✓
-                        </div>
-
-                        <div class="process-info">
-
-                            <strong>
-                                Sincronização RH
-                            </strong>
-
-                            <span>
-                                Banco de funcionários atualizado
-                            </span>
-
-                        </div>
-
-                        <div class="process-time">
-                            09:12
-                        </div>
-
-                        <span class="status success">
-                            Concluído
-                        </span>
-
-                    </div>
-
-                </div>
-
-            </section>
-
-
-            <!-- ATIVIDADES -->
-
-            <section class="panel activity-panel">
-
-                <div class="panel-header">
-
-                    <div>
-
-                        <span class="panel-label">
-                            AUDITORIA
-                        </span>
-
-                        <h3>Atividades recentes</h3>
-
-                    </div>
-
-                </div>
-
-
-                <div class="activity-list">
-
-
-                    <div class="activity">
-
-                        <div class="activity-avatar">
-                            MK
-                        </div>
-
-                        <div>
-
-                            <strong>
-                                Administrador
-                            </strong>
-
-                            <p>
-                                gerou um relatório financeiro
-                            </p>
-
-                            <span>
-                                Há 8 minutos
-                            </span>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="activity">
-
-                        <div class="activity-avatar purple">
-                            RH
-                        </div>
-
-                        <div>
-
-                            <strong>
-                                Sistema RH
-                            </strong>
-
-                            <p>
-                                atualizou 6 funcionários
-                            </p>
-
-                            <span>
-                                Há 21 minutos
-                            </span>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="activity">
-
-                        <div class="activity-avatar orange">
-                            ET
-                        </div>
-
-                        <div>
-
-                            <strong>
-                                Processo ETL
-                            </strong>
-
-                            <p>
-                                processou novos dados
-                            </p>
-
-                            <span>
-                                Há 37 minutos
-                            </span>
-
-                        </div>
-
-                    </div>
-
-
-                </div>
-
             </section>
 
         </div>
 
 
-        <!-- ==========================
-             MÓDULOS
-        =========================== -->
+        <!-- =================================================
+             FOOTER
+        ================================================== -->
 
-        <section class="modules-section">
+        <footer class="footer">
 
-            <div class="section-heading">
+            <span>
+                © 2026 AutoCorp Intelligence
+            </span>
 
-                <div>
+            <span>
+                Sistema de Automação Corporativa
+            </span>
 
-                    <span class="panel-label">
-                        PLATAFORMA
-                    </span>
+        </footer>
 
-                    <h2>Módulos do sistema</h2>
+    </main>
 
-                </div>
 
-                <p>
-                    Acesse rapidamente os principais recursos.
-                </p>
+    <!-- =====================================================
+         JAVASCRIPT
+    ====================================================== -->
 
-            </div>
-
-
-            <div class="modules-grid">
-
-
-                <a href="#documentos" class="module-card">
-
-                    <div class="module-icon blue">
-                        ▤
-                    </div>
-
-                    <div>
-
-                        <h3>Documentos</h3>
-
-                        <p>
-                            Gerencie e organize documentos
-                            corporativos.
-                        </p>
-
-                    </div>
-
-                    <span class="module-arrow">
-                        →
-                    </span>
-
-                </a>
-
-
-                <a href="#notas" class="module-card">
-
-                    <div class="module-icon purple">
-                        ▣
-                    </div>
-
-                    <div>
-
-                        <h3>Notas Fiscais</h3>
-
-                        <p>
-                            Extraia e processe informações
-                            automaticamente.
-                        </p>
-
-                    </div>
-
-                    <span class="module-arrow">
-                        →
-                    </span>
-
-                </a>
-
-
-                <a href="#rh" class="module-card">
-
-                    <div class="module-icon orange">
-                        ♙
-                    </div>
-
-                    <div>
-
-                        <h3>Recursos Humanos</h3>
-
-                        <p>
-                            Centralize funcionários e documentos
-                            de RH.
-                        </p>
-
-                    </div>
-
-                    <span class="module-arrow">
-                        →
-                    </span>
-
-                </a>
-
-
-                <a href="#etl" class="module-card">
-
-                    <div class="module-icon green">
-                        ↻
-                    </div>
-
-                    <div>
-
-                        <h3>ETL de Dados</h3>
-
-                        <p>
-                            Extraia, transforme e carregue
-                            informações.
-                        </p>
-
-                    </div>
-
-                    <span class="module-arrow">
-                        →
-                    </span>
-
-                </a>
-
-
-                <a href="#relatorios" class="module-card">
-
-                    <div class="module-icon red">
-                        ▥
-                    </div>
-
-                    <div>
-
-                        <h3>Relatórios</h3>
-
-                        <p>
-                            Crie relatórios empresariais
-                            automaticamente.
-                        </p>
-
-                    </div>
-
-                    <span class="module-arrow">
-                        →
-                    </span>
-
-                </a>
-
-
-                <a href="#chatbot" class="module-card ai-module">
-
-                    <div class="module-icon ai">
-                        ✦
-                    </div>
-
-                    <div>
-
-                        <h3>Assistente IA</h3>
-
-                        <p>
-                            Consulte documentos e dados usando
-                            inteligência artificial.
-                        </p>
-
-                    </div>
-
-                    <span class="module-arrow">
-                        →
-                    </span>
-
-                </a>
-
-            </div>
-
-        </section>
-
-
-    </section>
-
-
-    <!-- ================================
-         FOOTER
-    ================================= -->
-
-    <footer>
-
-        <span>
-            © 2026 AutoCorp Intelligence
-        </span>
-
-        <span>
-            Sistema de Automação Corporativa
-        </span>
-
-    </footer>
-
-</main>
-
-
-<script src="script.js"></script>
-```
+    <script src="script.js"></script>
 
 </body>
+
 </html>
