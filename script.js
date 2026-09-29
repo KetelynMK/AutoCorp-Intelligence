@@ -1,576 +1,848 @@
-/* =========================================================
-AUTOCORP INTELLIGENCE
-Dashboard Corporativo
-========================================================= */
+document.addEventListener("DOMContentLoaded", () => {
 
-/* =========================
-ELEMENTOS PRINCIPAIS
-========================= */
+    initMobileMenu();
+    initNavigation();
+    initNotifications();
+    initAutomationButton();
+    initChart();
+    initModules();
+    initProcessInteractions();
+    initKeyboard();
+    initSystemStatus();
+    initAnimations();
+
+});
+
+
+/* =========================================================
+   ELEMENTOS PRINCIPAIS
+========================================================= */
 
 const sidebar = document.getElementById("sidebar");
 const mobileMenu = document.getElementById("mobileMenu");
 
-const menuItems = document.querySelectorAll(".menu-item");
-const modules = document.querySelectorAll(".module-card");
+const notificationBtn = document.getElementById("notificationBtn");
+const newAutomationBtn = document.getElementById("newAutomationBtn");
 
-const notification = document.querySelector(".notification");
-const primaryButton = document.querySelector(".primary-button");
+const chartPeriod = document.getElementById("chartPeriod");
+const revenueChart = document.getElementById("revenueChart");
 
-const chartSelect = document.querySelector(".chart-panel select");
-const bars = document.querySelectorAll(".bar");
 
-/* =========================
-MENU MOBILE
-========================= */
+/* =========================================================
+   MENU MOBILE
+========================================================= */
 
-if (mobileMenu && sidebar) {
+function initMobileMenu() {
 
-```
-mobileMenu.addEventListener("click", () => {
+    if (!mobileMenu || !sidebar) return;
 
-    sidebar.classList.toggle("open");
+    mobileMenu.addEventListener("click", () => {
 
-});
-```
+        sidebar.classList.toggle("open");
 
-}
+        const isOpen = sidebar.classList.contains("open");
 
-/* =========================
-FECHAR MENU AO CLICAR
-EM UM LINK NO CELULAR
-========================= */
+        mobileMenu.setAttribute(
+            "aria-expanded",
+            isOpen
+        );
 
-menuItems.forEach(item => {
+        mobileMenu.setAttribute(
+            "aria-label",
+            isOpen
+                ? "Fechar menu"
+                : "Abrir menu"
+        );
 
-```
-item.addEventListener("click", () => {
-
-    if (window.innerWidth <= 900) {
-        sidebar.classList.remove("open");
-    }
-
-});
-```
-
-});
-
-/* =========================
-MENU ATIVO
-========================= */
-
-menuItems.forEach(item => {
-
-```
-item.addEventListener("click", () => {
-
-    menuItems.forEach(menu => {
-        menu.classList.remove("active");
     });
 
-    item.classList.add("active");
 
-});
-```
+    /* Fecha o menu ao clicar fora */
 
-});
+    document.addEventListener("click", (event) => {
 
-/* =========================
-MÓDULOS ATIVOS
-========================= */
+        const clickedInsideSidebar =
+            sidebar.contains(event.target);
 
-modules.forEach(module => {
+        const clickedMenu =
+            mobileMenu.contains(event.target);
 
-```
-module.addEventListener("click", () => {
+        if (
+            window.innerWidth <= 900 &&
+            sidebar.classList.contains("open") &&
+            !clickedInsideSidebar &&
+            !clickedMenu
+        ) {
 
-    modules.forEach(item => {
-        item.classList.remove("selected");
-    });
-
-    module.classList.add("selected");
-
-});
-```
-
-});
-
-/* =========================
-NOTIFICAÇÕES
-========================= */
-
-if (notification) {
-
-```
-notification.addEventListener("click", () => {
-
-    alert(
-        "Você possui 3 notificações:\n\n" +
-        "• Relatório financeiro disponível\n" +
-        "• 18 notas fiscais processadas\n" +
-        "• Processo ETL concluído"
-    );
-
-});
-```
-
-}
-
-/* =========================
-BOTÃO NOVA AUTOMAÇÃO
-========================= */
-
-if (primaryButton) {
-
-```
-primaryButton.addEventListener("click", () => {
-
-    alert(
-        "Nova automação\n\n" +
-        "Esse módulo será conectado ao backend Python " +
-        "nas próximas etapas do projeto."
-    );
-
-});
-```
-
-}
-
-/* =========================
-GRÁFICO
-========================= */
-
-const chartData = {
-
-```
-"Últimos 6 meses": [
-    48,
-    61,
-    54,
-    72,
-    68,
-    86
-],
-
-"Este ano": [
-    42,
-    51,
-    58,
-    64,
-    73,
-    86
-],
-
-"Últimos 12 meses": [
-    38,
-    44,
-    48,
-    52,
-    57,
-    61,
-    64,
-    68,
-    71,
-    75,
-    81,
-    88
-]
-```
-
-};
-
-function updateChart(period) {
-
-```
-const values = chartData[period];
-
-if (!values) return;
-
-const chartBars = document.querySelector(".chart-bars");
-
-if (!chartBars) return;
-
-chartBars.innerHTML = "";
-
-values.forEach((value, index) => {
-
-    const bar = document.createElement("div");
-
-    bar.classList.add("bar");
-
-    if (index === values.length - 1) {
-        bar.classList.add("active-bar");
-    }
-
-    bar.style.height = `${value}%`;
-
-    const label = document.createElement("span");
-
-    label.textContent = getMonthLabel(
-        index,
-        values.length
-    );
-
-    bar.appendChild(label);
-
-    chartBars.appendChild(bar);
-
-});
-```
-
-}
-
-function getMonthLabel(index, total) {
-
-```
-const months = [
-    "Jan",
-    "Fev",
-    "Mar",
-    "Abr",
-    "Mai",
-    "Jun",
-    "Jul",
-    "Ago",
-    "Set",
-    "Out",
-    "Nov",
-    "Dez"
-];
-
-const currentMonth = new Date().getMonth();
-
-if (total === 12) {
-    return months[index];
-}
-
-const start =
-    (currentMonth - total + 1 + 12) % 12;
-
-return months[
-    (start + index) % 12
-];
-```
-
-}
-
-if (chartSelect) {
-
-```
-chartSelect.addEventListener("change", event => {
-
-    updateChart(event.target.value);
-
-});
-```
-
-}
-
-/* =========================
-ANIMAÇÃO DOS GRÁFICOS
-========================= */
-
-function animateBars() {
-
-```
-const currentBars =
-    document.querySelectorAll(".bar");
-
-currentBars.forEach(bar => {
-
-    const finalHeight = bar.style.height;
-
-    bar.style.height = "0";
-
-    setTimeout(() => {
-
-        bar.style.height = finalHeight;
-
-    }, 100);
-
-});
-```
-
-}
-
-/* =========================
-SCROLL REVEAL
-========================= */
-
-const animatedElements = document.querySelectorAll(
-".metric-card, .panel, .module-card"
-);
-
-const observer = new IntersectionObserver(
-entries => {
-
-```
-    entries.forEach(entry => {
-
-        if (entry.isIntersecting) {
-
-            entry.target.classList.add("visible");
+            closeMobileMenu();
 
         }
 
     });
 
-},
-{
-    threshold: 0.08
-}
-```
-
-);
-
-animatedElements.forEach(element => {
-
-```
-observer.observe(element);
-```
-
-});
-
-/* =========================
-HORA ATUAL
-========================= */
-
-function updateTime() {
-
-```
-const now = new Date();
-
-const time = now.toLocaleTimeString(
-    "pt-BR",
-    {
-        hour: "2-digit",
-        minute: "2-digit"
-    }
-);
-
-const timeElements =
-    document.querySelectorAll(".process-time");
-
-if (timeElements.length > 0) {
-
-    /*
-     * O primeiro horário representa
-     * a execução mais recente.
-     */
-
-    timeElements[0].setAttribute(
-        "title",
-        `Última atualização: ${time}`
-    );
-
-}
-```
-
 }
 
-/* =========================
-STATUS DO SISTEMA
-========================= */
 
-function systemStatus() {
+/* FECHAR MENU */
 
-```
-const statusDot =
-    document.querySelector(".status-dot");
+function closeMobileMenu() {
 
-const statusText =
-    document.querySelector(".system-status small");
-
-if (!statusDot || !statusText) return;
-
-statusText.textContent =
-    "Todos os serviços ativos";
-```
-
-}
-
-/* =========================
-CONFIRMAÇÃO DE PROCESSOS
-========================= */
-
-const processItems =
-document.querySelectorAll(".process-item");
-
-processItems.forEach(process => {
-
-```
-process.addEventListener("click", () => {
-
-    const title =
-        process.querySelector(
-            ".process-info strong"
-        );
-
-    if (!title) return;
-
-    console.log(
-        `Processo selecionado: ${title.textContent}`
-    );
-
-});
-```
-
-});
-
-/* =========================
-RESPONSIVIDADE
-========================= */
-
-window.addEventListener("resize", () => {
-
-```
-if (
-    window.innerWidth > 900 &&
-    sidebar
-) {
+    if (!sidebar) return;
 
     sidebar.classList.remove("open");
 
-}
-```
+    if (mobileMenu) {
 
-});
+        mobileMenu.setAttribute(
+            "aria-expanded",
+            "false"
+        );
 
-/* =========================
-ESC FECHA SIDEBAR
-========================= */
+        mobileMenu.setAttribute(
+            "aria-label",
+            "Abrir menu"
+        );
 
-document.addEventListener("keydown", event => {
-
-```
-if (event.key === "Escape") {
-
-    if (sidebar) {
-        sidebar.classList.remove("open");
     }
 
 }
-```
 
-});
 
-/* =========================
-INICIALIZAÇÃO
-========================= */
+/* =========================================================
+   NAVEGAÇÃO
+========================================================= */
 
-document.addEventListener("DOMContentLoaded", () => {
+function initNavigation() {
 
-```
-systemStatus();
+    const navLinks =
+        document.querySelectorAll(".nav-link");
 
-updateTime();
+    if (!navLinks.length) return;
 
-animateBars();
 
-console.log(
-    "AutoCorp Intelligence iniciado com sucesso."
-);
-```
+    navLinks.forEach(link => {
 
-});
+        link.addEventListener("click", event => {
 
-/* =========================
-FUTURO BACKEND
-========================= */
+            navLinks.forEach(item => {
+                item.classList.remove("active");
+            });
 
-/*
-Aqui futuramente vamos conectar o Python.
+            link.classList.add("active");
 
-```
-Exemplo:
 
-fetch("http://localhost:8000/api/dashboard")
-    .then(response => response.json())
-    .then(data => {
+            /* Fecha menu no celular */
 
-        console.log(data);
+            if (window.innerWidth <= 900) {
+                closeMobileMenu();
+            }
+
+        });
 
     });
 
-O backend FastAPI poderá fornecer:
+}
 
-- faturamento
-- notas fiscais
-- funcionários
-- documentos
-- processos ETL
-- relatórios
-- notificações
-- dados do chatbot
-```
 
-*/
+/* =========================================================
+   NOTIFICAÇÕES
+========================================================= */
 
-/* =========================
-API BASE
-========================= */
+function initNotifications() {
 
-const API_URL =
-"http://localhost:8000/api";
+    if (!notificationBtn) return;
 
-/*
-Função preparada para
-futuras requisições ao Python.
-*/
+    notificationBtn.addEventListener("click", () => {
 
-async function apiRequest(
-endpoint,
-options = {}
-) {
+        const count =
+            notificationBtn.querySelector(
+                ".notification-count"
+            );
 
-```
-try {
+        if (count) {
 
-    const response = await fetch(
-        `${API_URL}${endpoint}`,
-        {
-            ...options,
-            headers: {
-                "Content-Type":
-                    "application/json",
+            count.textContent = "0";
 
-                ...options.headers
-            }
+            count.style.background =
+                "#94a3b8";
+
         }
-    );
+
+        showToast(
+            "Você não possui novas notificações."
+        );
+
+    });
+
+}
 
 
-    if (!response.ok) {
+/* =========================================================
+   NOVA AUTOMAÇÃO
+========================================================= */
 
-        throw new Error(
-            `Erro HTTP: ${response.status}`
+function initAutomationButton() {
+
+    if (!newAutomationBtn) return;
+
+    newAutomationBtn.addEventListener("click", () => {
+
+        showToast(
+            "Módulo de automações preparado para integração com o backend."
+        );
+
+    });
+
+}
+
+
+/* =========================================================
+   SISTEMA DE TOAST
+========================================================= */
+
+function showToast(message) {
+
+    const oldToast =
+        document.querySelector(".system-toast");
+
+    if (oldToast) {
+        oldToast.remove();
+    }
+
+
+    const toast =
+        document.createElement("div");
+
+    toast.className = "system-toast";
+
+    toast.innerHTML = `
+        <span class="toast-icon">✓</span>
+        <span>${message}</span>
+    `;
+
+
+    Object.assign(toast.style, {
+
+        position: "fixed",
+        right: "24px",
+        bottom: "24px",
+
+        display: "flex",
+        alignItems: "center",
+        gap: "10px",
+
+        maxWidth: "360px",
+
+        padding: "13px 16px",
+
+        background: "#111827",
+        color: "#fff",
+
+        borderRadius: "10px",
+
+        fontSize: "12px",
+
+        boxShadow:
+            "0 10px 30px rgba(0,0,0,.18)",
+
+        zIndex: "9999",
+
+        opacity: "0",
+        transform: "translateY(15px)",
+
+        transition:
+            "opacity .25s ease, transform .25s ease"
+
+    });
+
+
+    document.body.appendChild(toast);
+
+
+    requestAnimationFrame(() => {
+
+        toast.style.opacity = "1";
+        toast.style.transform =
+            "translateY(0)";
+
+    });
+
+
+    setTimeout(() => {
+
+        toast.style.opacity = "0";
+        toast.style.transform =
+            "translateY(15px)";
+
+        setTimeout(() => {
+            toast.remove();
+        }, 250);
+
+    }, 3000);
+
+}
+
+
+/* =========================================================
+   DADOS DO GRÁFICO
+========================================================= */
+
+const chartData = {
+
+    "6": [
+        {
+            label: "Jan",
+            value: 62000
+        },
+        {
+            label: "Fev",
+            value: 71000
+        },
+        {
+            label: "Mar",
+            value: 68000
+        },
+        {
+            label: "Abr",
+            value: 79000
+        },
+        {
+            label: "Mai",
+            value: 82400
+        },
+        {
+            label: "Jun",
+            value: 85430
+        }
+    ],
+
+
+    "12": [
+        {
+            label: "Jul",
+            value: 54000
+        },
+        {
+            label: "Ago",
+            value: 58000
+        },
+        {
+            label: "Set",
+            value: 61000
+        },
+        {
+            label: "Out",
+            value: 59000
+        },
+        {
+            label: "Nov",
+            value: 65000
+        },
+        {
+            label: "Dez",
+            value: 70000
+        },
+        {
+            label: "Jan",
+            value: 62000
+        },
+        {
+            label: "Fev",
+            value: 71000
+        },
+        {
+            label: "Mar",
+            value: 68000
+        },
+        {
+            label: "Abr",
+            value: 79000
+        },
+        {
+            label: "Mai",
+            value: 82400
+        },
+        {
+            label: "Jun",
+            value: 85430
+        }
+    ],
+
+
+    "year": [
+        {
+            label: "Jan",
+            value: 62000
+        },
+        {
+            label: "Fev",
+            value: 71000
+        },
+        {
+            label: "Mar",
+            value: 68000
+        },
+        {
+            label: "Abr",
+            value: 79000
+        },
+        {
+            label: "Mai",
+            value: 82400
+        },
+        {
+            label: "Jun",
+            value: 85430
+        }
+    ]
+
+};
+
+
+/* =========================================================
+   INICIALIZAÇÃO DO GRÁFICO
+========================================================= */
+
+function initChart() {
+
+    if (!revenueChart) return;
+
+
+    if (chartPeriod) {
+
+        chartPeriod.addEventListener(
+            "change",
+            () => {
+
+                updateChart(
+                    chartPeriod.value
+                );
+
+            }
         );
 
     }
 
 
-    return await response.json();
+    updateChart("6");
 
 }
 
-catch (error) {
 
-    console.error(
-        "Erro na API:",
-        error
+/* =========================================================
+   ATUALIZAR GRÁFICO
+========================================================= */
+
+function updateChart(period) {
+
+    if (!revenueChart) return;
+
+
+    const data =
+        chartData[period] ||
+        chartData["6"];
+
+
+    const maxValue = 100000;
+
+
+    revenueChart.innerHTML = "";
+
+
+    data.forEach(item => {
+
+        const group =
+            document.createElement("div");
+
+        group.className =
+            "bar-group";
+
+
+        const bar =
+            document.createElement("div");
+
+        bar.className = "bar";
+
+
+        const height =
+            Math.min(
+                (item.value / maxValue) * 100,
+                100
+            );
+
+
+        bar.style.height = "0%";
+
+        bar.dataset.value =
+            item.value;
+
+
+        const label =
+            document.createElement("span");
+
+        label.textContent =
+            item.label;
+
+
+        group.appendChild(bar);
+        group.appendChild(label);
+
+        revenueChart.appendChild(group);
+
+
+        /* Animação */
+
+        requestAnimationFrame(() => {
+
+            setTimeout(() => {
+
+                bar.style.height =
+                    `${height}%`;
+
+            }, 50);
+
+        });
+
+
+        /* Tooltip */
+
+        bar.title =
+            formatCurrency(item.value);
+
+    });
+
+}
+
+
+/* =========================================================
+   FORMATAÇÃO DE VALORES
+========================================================= */
+
+function formatCurrency(value) {
+
+    return new Intl.NumberFormat(
+        "pt-BR",
+        {
+            style: "currency",
+            currency: "BRL"
+        }
+    ).format(value);
+
+}
+
+
+/* =========================================================
+   MÓDULOS
+========================================================= */
+
+function initModules() {
+
+    const modules =
+        document.querySelectorAll(
+            ".module-card"
+        );
+
+    if (!modules.length) return;
+
+
+    modules.forEach(module => {
+
+        module.addEventListener(
+            "click",
+            () => {
+
+                modules.forEach(item => {
+                    item.classList.remove("selected");
+                });
+
+                module.classList.add("selected");
+
+            }
+        );
+
+    });
+
+}
+
+
+/* =========================================================
+   PROCESSOS
+========================================================= */
+
+function initProcessInteractions() {
+
+    const processes =
+        document.querySelectorAll(
+            ".process-item"
+        );
+
+    if (!processes.length) return;
+
+
+    processes.forEach(process => {
+
+        process.style.cursor = "pointer";
+
+
+        process.addEventListener(
+            "click",
+            () => {
+
+                const title =
+                    process.querySelector(
+                        ".process-info strong"
+                    );
+
+
+                if (title) {
+
+                    showToast(
+                        `Processo selecionado: ${title.textContent}`
+                    );
+
+                }
+
+            }
+        );
+
+    });
+
+}
+
+
+/* =========================================================
+   TECLADO
+========================================================= */
+
+function initKeyboard() {
+
+    document.addEventListener(
+        "keydown",
+        event => {
+
+            /* ESC fecha o menu */
+
+            if (
+                event.key === "Escape" &&
+                window.innerWidth <= 900
+            ) {
+
+                closeMobileMenu();
+
+            }
+
+        }
     );
 
-    return null;
-
-}
-```
-
 }
 
-/* =========================
-FINAL
-========================= */
 
-console.log(
-"🚀 AutoCorp Intelligence | Front-end carregado."
+/* =========================================================
+   STATUS DO SISTEMA
+========================================================= */
+
+function initSystemStatus() {
+
+    const status =
+        document.querySelector(
+            ".system-status"
+        );
+
+    if (!status) return;
+
+
+    status.setAttribute(
+        "title",
+        "Todos os serviços estão operacionais"
+    );
+
+}
+
+
+/* =========================================================
+   ANIMAÇÕES DOS CARDS
+========================================================= */
+
+function initAnimations() {
+
+    const elements =
+        document.querySelectorAll(
+            ".metric-card, .panel, .module-card"
+        );
+
+    if (!elements.length) return;
+
+
+    /* Caso o navegador não tenha
+       IntersectionObserver */
+
+    if (
+        !("IntersectionObserver" in window)
+    ) {
+
+        elements.forEach(element => {
+
+            element.style.opacity = "1";
+            element.style.transform =
+                "translateY(0)";
+
+        });
+
+        return;
+
+    }
+
+
+    elements.forEach(element => {
+
+        element.style.opacity = "0";
+
+        element.style.transform =
+            "translateY(12px)";
+
+        element.style.transition =
+            "opacity .45s ease, transform .45s ease";
+
+    });
+
+
+    const observer =
+        new IntersectionObserver(
+            entries => {
+
+                entries.forEach(entry => {
+
+                    if (!entry.isIntersecting)
+                        return;
+
+
+                    entry.target.style.opacity =
+                        "1";
+
+                    entry.target.style.transform =
+                        "translateY(0)";
+
+
+                    observer.unobserve(
+                        entry.target
+                    );
+
+                });
+
+            },
+            {
+                threshold: .08
+            }
+        );
+
+
+    elements.forEach(element => {
+
+        observer.observe(element);
+
+    });
+
+}
+
+
+/* =========================================================
+   RESPONSIVIDADE
+========================================================= */
+
+window.addEventListener(
+    "resize",
+    () => {
+
+        if (
+            window.innerWidth > 900
+        ) {
+
+            closeMobileMenu();
+
+        }
+
+    }
 );
 
+
+/* =========================================================
+   API — PREPARAÇÃO PARA FASTAPI
+========================================================= */
+
+const API_URL =
+    "http://localhost:8000/api";
+
+
+/**
+ * Função base para chamadas
+ * ao backend FastAPI.
+ *
+ * Ainda não é necessário utilizar.
+ * Será usada quando começarmos
+ * a criar o backend Python.
+ */
+
+async function apiRequest(
+    endpoint,
+    options = {}
+) {
+
+    try {
+
+        const response =
+            await fetch(
+                `${API_URL}${endpoint}`,
+                {
+                    headers: {
+                        "Content-Type":
+                            "application/json",
+
+                        ...(options.headers || {})
+                    },
+
+                    ...options
+                }
+            );
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                `Erro HTTP: ${response.status}`
+            );
+
+        }
+
+
+        return await response.json();
+
+    } catch (error) {
+
+        console.error(
+            "Erro na API:",
+            error
+        );
+
+        throw error;
+
+    }
+
+}
+
+
+/* =========================================================
+   LOG DE INICIALIZAÇÃO
+========================================================= */
+
+console.log(
+    "%cAutoCorp Intelligence",
+    "font-size:18px;font-weight:bold;color:#2563eb;"
+);
+
+console.log(
+    "Dashboard carregado com sucesso."
+);
+
+console.log(
+    "Backend preparado para integração com FastAPI."
+);
